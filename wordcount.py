@@ -8,6 +8,6 @@ if __name__ == "__main__":
         exit(-1)
     sc = SparkContext(appName="PythonWordCount")
     lines = sc.textFile(sys.argv[1], 1)
-    counts = lines.flatMap(lambda x: x.split(' ')).map(lambda x: x,1).reduceBBykey(add)
+    counts = lines.flatMap(lambda x: x.split(' ')).map(lambda x: x,1).reduceBykey(add)
     counts.saveAsTextFile(sys.argv[2])
     sc.stop()
